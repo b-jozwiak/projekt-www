@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wyszukaj Gry</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Wyszukaj Gry</h1>
+        <nav>
+            <a href="index.html">Lista</a>
+            <a href="search.html">Wyszukaj</a>
+            <a href="favorites.html">Ulubione</a>
+        </nav>
+    </header>
+    <main>
+        <section id="search-form">
+            <form>
+                <label for="search-query">Wyszukaj po nazwie:</label>
+                <input type="text" id="search-query" name="query">
+                <label for="filter-genre">Filtruj po gatunku:</label>
+                <select id="filter-genre" name="genre">
+                    <option value="">Wszystkie</option>
+                    <option value="akcja">Akcja</option>
+                    <option value="przygoda">Przygoda</option>
+                    <!-- TODO: Dodać więcej gatunków -->
+                </select>
+                <button type="submit">Szukaj</button>
+            </form>
+        </section>
+        <section id="search-results">
+            <!-- Wyniki wyszukiwania -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Aplikacja Gier</p>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>
