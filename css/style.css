@@ -41,4 +41,16 @@ footer {
     color: white;
 }
 
-/* TODO: Dodać responsywność dla większych ekranów */
+/* Responsywność */
+@media (min-width: 768px) {
+    nav {
+        display: flex;
+        justify-content: center;
+    }
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* TODO: Dodać więcej stylów dla formularzy i szczegółów */
