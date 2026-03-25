@@ -63,6 +63,10 @@ nav a:focus-visible {
   outline-offset: 2px;
 }
 
+nav a {
+  transition: color 0.2s ease;
+}
+
 main {
   padding: 1.5rem;
   max-width: 1200px;
