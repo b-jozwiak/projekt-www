@@ -156,6 +156,19 @@ button:hover {
   background-color: var(--accent-hover);
 }
 
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+
+.game-details {
+  background-color: var(--surface);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
 @media (min-width: 768px) {
   header {
     padding: 1.5rem 2rem;
