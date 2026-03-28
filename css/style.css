@@ -13,6 +13,12 @@
   box-sizing: border-box;
 }
 
+html, body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 body {
   font-family: system-ui, -apple-system, sans-serif;
   margin: 0;
@@ -71,6 +77,8 @@ main {
   padding: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
+  flex: 1;
+  width: 100%;
 }
 
 footer {
