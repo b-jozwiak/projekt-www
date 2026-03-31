@@ -1,0 +1,11 @@
+{
+  "name": "projekt-www",
+  "version": "1.0.0",
+  "description": "Katalog gier komputerowych",
+  "scripts": {
+    "server": "json-server --watch db.json --port 3001"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.4"
+  }
+}

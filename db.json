@@ -1,0 +1,124 @@
+{
+  "games": [
+    {
+      "id": 1,
+      "name": "The Witcher 3: Wild Hunt",
+      "genre": "RPG",
+      "platform": "PC",
+      "release": "2015-05-19",
+      "rating": 9.8,
+      "description": "Epickie RPG o wartkim wiedźniecie Geralcie z Rivii, przemierzającym świat fantasy w poszukiwaniu zaginionej córki.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/2/27/The_Witcher_3_Wild_Hunt.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Cyberpunk 2077",
+      "genre": "RPG",
+      "platform": "PC",
+      "release": "2020-12-10",
+      "rating": 8.2,
+      "description": "Futurystyczne RPG akcji w Night City. Gracz tworzy postać i przebija się przez niebezpieczny świat.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Minecraft",
+      "genre": "Sandbox",
+      "platform": "PC",
+      "release": "2011-11-18",
+      "rating": 9.0,
+      "description": "Gra voxel w stylu sandbox. Gracze eksplorują losowo generowany świat, zbierają zasoby i budują.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png"
+    },
+    {
+      "id": 4,
+      "name": "Grand Theft Auto V",
+      "genre": "Akcja",
+      "platform": "PC",
+      "release": "2014-04-14",
+      "rating": 9.0,
+      "description": "Otwarty świat akcji w Los Santos. Trzech protagonistów przeprowadza napady.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png"
+    },
+    {
+      "id": 5,
+      "name": "The Legend of Zelda: BOTW",
+      "genre": "Przygoda",
+      "platform": "Nintendo",
+      "release": "2017-03-03",
+      "rating": 9.7,
+      "description": "Otwarta gra przygodowa. Link eksploruje Hyrule, walcząc z Calamity Ganonem.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Portal 2",
+      "genre": "Logiczna",
+      "platform": "PC",
+      "release": "2011-04-19",
+      "rating": 9.5,
+      "description": "Gra logiczna z pistolentem portalowym. Rozwiązuj łamigłówki używając portali.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f2/Portal_2_steam_cover.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Dark Souls III",
+      "genre": "RPG",
+      "platform": "PC",
+      "release": "2016-04-12",
+      "rating": 9.0,
+      "description": "Wymagające action RPG. Walki z intensywnymi bossami w mrocznym świecie.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b7/Dark_Souls_III_Cover.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Among Us",
+      "genre": "Społecznościowa",
+      "platform": "PC",
+      "release": "2018-06-15",
+      "rating": 7.8,
+      "description": "Gra multiplayer. Wykryj oszusta wśród załogi statku kosmicznego.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/9/9a/Among_Us_cover_art.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Stardew Valley",
+      "genre": "Symulacja",
+      "platform": "PC",
+      "release": "2016-02-26",
+      "rating": 9.2,
+      "description": "Symulacja zarządzania farmą. Hodowl, handluj i buduj relacje.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/f/f5/Stardew_Valley_cover_art.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Sekiro: Shadows Die Twice",
+      "genre": "Akcja",
+      "platform": "PC",
+      "release": "2019-03-22",
+      "rating": 9.2,
+      "description": "Gra akcji. Wcielasz się w shinobi, przemierzając feudalne Japonię.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/4/4c/Sekiro_Shadows_Die_Twice.jpg"
+    },
+    {
+      "id": 11,
+      "name": "Celeste",
+      "genre": "Platformowa",
+      "platform": "PC",
+      "release": "2018-01-25",
+      "rating": 9.4,
+      "description": "Platformówka o pokonywaniu wewnętrznych demonów. Madeline wspina się na górę.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/b/b5/Celeste_cover.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Hades",
+      "genre": "Roguelike",
+      "platform": "PC",
+      "release": "2020-09-17",
+      "rating": 9.3,
+      "description": "Action roguelike. Zagreus ucieka z zaświatów, walcząc z hordami.",
+      "image": "https://upload.wikimedia.org/wikipedia/en/6/6e/Hades_cover.jpg"
+    }
+  ]
+}
