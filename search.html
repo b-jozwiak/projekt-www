@@ -19,24 +19,27 @@
         <section id="search-form">
             <form>
                 <label for="search-query">Wyszukaj po nazwie:</label>
-                <input type="text" id="search-query" name="query">
+                <input type="text" id="search-query" name="query" placeholder="Wpisz nazwę...">
                 <label for="filter-genre">Filtruj po gatunku:</label>
                 <select id="filter-genre" name="genre">
                     <option value="">Wszystkie</option>
-                    <option value="akcja">Akcja</option>
-                    <option value="przygoda">Przygoda</option>
-                    <!-- TODO: Dodać więcej gatunków -->
+                    <option value="RPG">RPG</option>
+                    <option value="Akcja">Akcja</option>
+                    <option value="Przygoda">Przygoda</option>
+                    <option value="Sandbox">Sandbox</option>
+                    <option value="Logiczna">Logiczna</option>
+                    <option value="Symulacja">Symulacja</option>
                 </select>
                 <button type="submit">Szukaj</button>
             </form>
         </section>
         <section id="search-results">
-            <!-- Wyniki wyszukiwania -->
+            <p class="empty-message">Wprowadź kryteria wyszukiwania.</p>
         </section>
     </main>
     <footer>
         <p>&copy; 2026 Aplikacja Gier</p>
     </footer>
-    <script src="js/app.js"></script>
+    <script src="js/search.js" type="module"></script>
 </body>
 </html>
