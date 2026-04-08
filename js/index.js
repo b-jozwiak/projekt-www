@@ -11,6 +11,8 @@ async function loadGames() {
   const listEl = document.getElementById('game-list');
   if (!listEl) return;
 
+  listEl.innerHTML = '<div class="loading-spinner"></div>';
+
   try {
     const res = await fetch(`${API}/games`);
     if (!res.ok) throw new Error('Błąd pobierania');

@@ -27,6 +27,12 @@ async function loadGameDetails() {
   const container = document.getElementById('game-details');
   if (!container || !id) return;
 
+  const heading = document.getElementById('game-title');
+  if (heading) heading.textContent = '';
+  const img = document.getElementById('game-image');
+  if (img) img.style.display = 'none';
+  container.innerHTML = '<div class="loading-spinner"></div>';
+
   try {
     const res = await fetch(`${API}/games/${id}`);
     if (!res.ok) throw new Error('Gra nie znaleziona');

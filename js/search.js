@@ -17,6 +17,8 @@ async function searchGames() {
     const query = document.getElementById('search-query').value;
     const genre = document.getElementById('filter-genre').value;
 
+    listEl.innerHTML = '<div class="loading-spinner"></div>';
+
     const params = new URLSearchParams();
     if (query) params.append('name_like', query);
     if (genre) params.append('genre', genre);
