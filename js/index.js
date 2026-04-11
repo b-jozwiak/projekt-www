@@ -26,15 +26,14 @@ async function loadGames() {
     const images = games.map(game => getPlaceholderImage(game.name));
 
     listEl.innerHTML = '<div class="game-grid">' + games.map((game, i) => `
-      <article class="game-item">
+      <a href="game-details.html?id=${game.id}" class="game-item">
         <img class="game-item__image" src="${images[i]}" alt="${game.name || 'Gra'}">
         <div class="game-item__content">
           <h2>${game.name || 'Gra'}</h2>
           <p class="meta">${game.genre || ''} • ${game.platform || ''}</p>
           <p>Ocena: ${game.rating || '-'}</p>
-          <a href="game-details.html?id=${game.id}">Zobacz szczegóły</a>
         </div>
-      </article>
+      </a>
     `).join('') + '</div>';
   } catch (err) {
     console.error(err);
