@@ -28,6 +28,18 @@ function showLoading() {
   if (img) img.style.display = 'none';
 }
 
+function setupBackLink() {
+  const backLink = document.getElementById('back-link');
+  if (!backLink) return;
+  
+  const ref = document.referrer;
+  if (ref && ref.includes('favorites.html')) {
+    backLink.href = 'favorites.html';
+  } else {
+    backLink.href = 'index.html';
+  }
+}
+
 async function loadGameDetails() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
@@ -104,4 +116,7 @@ function toggleFavorite(btn, game) {
   updateFavoriteButton(btn, game);
 }
 
-document.addEventListener('DOMContentLoaded', loadGameDetails);
+document.addEventListener('DOMContentLoaded', () => {
+  setupBackLink();
+  loadGameDetails();
+});
