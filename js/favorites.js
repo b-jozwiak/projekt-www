@@ -27,13 +27,11 @@ function isFavorite(id) {
   return getFavorites().some(f => f.id === id);
 }
 
-async function toggleFavorite(game) {
-  if (isFavorite(game.id)) {
-    removeFavorite(game.id);
-  } else {
-    const completeGame = await fetch(`${API}/games/${game.id}`).then(r => r.json());
-    addFavorite(completeGame);
-  }
+function getPlaceholderImage(name) {
+  const colors = ['3b82f6', '8b5cf6', '10b981', 'f59e0b', 'ef4444', 'ec4899'];
+  const color = colors[(name?.length || 0) % colors.length];
+  const initial = name ? name.charAt(0).toUpperCase() : '?';
+  return `https://placehold.co/300x200/${color}/ffffff?text=${initial}`;
 }
 
 function loadFavoritesList() {
@@ -47,32 +45,25 @@ function loadFavoritesList() {
   }
 
   listEl.innerHTML = '<div class="game-grid">' + favs.map(game => `
-    <article class="game-item">
-      <img class="game-item__image" src="${getPlaceholderImage(game.name)}" alt="${game.name}">
+    <a href="game-details.html?id=${game.id}" class="game-item">
+      <img class="game-item__image" src="${getPlaceholderImage(game.name)}" alt="${game.name || 'Gra'}">
       <div class="game-item__content">
-        <h2>${game.name}</h2>
-        <p class="meta">${game.genre} • ${game.platform}</p>
-        <p>Ocena: ${game.rating}</p>
+        <h2>${game.name || 'Gra'}</h2>
+        <p class="meta">${game.genre || ''} • ${game.platform || ''}</p>
+        <p>Ocena: ${game.rating || '-'}</p>
         <button class="remove-fav" data-id="${game.id}">Usuń</button>
-        <a href="game-details.html?id=${game.id}">Szczegóły</a>
       </div>
-    </article>
+    </a>
   `).join('') + '</div>';
 
   document.querySelectorAll('.remove-fav').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       removeFavorite(parseInt(e.target.dataset.id));
       loadFavoritesList();
     });
   });
-}
-
-function getPlaceholderImage(name) {
-  const colors = ['3b82f6', '8b5cf6', '10b981', 'f59e0b', 'ef4444', 'ec4899'];
-  const color = colors[name.length % colors.length];
-  const initial = name.charAt(0).toUpperCase();
-  return `https://placehold.co/300x200/${color}/ffffff?text=${initial}`;
 }
 
 document.addEventListener('DOMContentLoaded', loadFavoritesList);
