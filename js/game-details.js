@@ -21,6 +21,13 @@ function getPlaceholderImage(name) {
   return `https://placehold.co/400x250/${color}/ffffff?text=${initial}`;
 }
 
+function showLoading() {
+  const heading = document.getElementById('game-title');
+  const img = document.getElementById('game-image');
+  if (heading) heading.textContent = 'Ładowanie...';
+  if (img) img.style.display = 'none';
+}
+
 async function loadGameDetails() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
@@ -33,7 +40,7 @@ async function loadGameDetails() {
     return;
   }
 
-  container.innerHTML = '<div class="loading-spinner"></div>';
+  showLoading();
 
   try {
     const res = await fetch(`${API}/games/${id}`);
@@ -72,7 +79,8 @@ async function loadGameDetails() {
     }
   } catch (err) {
     console.error(err);
-    container.innerHTML = `<p class="empty-message">Nie można załadować szczegółów. Upewnij się, że json-server działa na porcie 3001. <a href="index.html">Wróć do listy</a></p>`;
+    const heading = document.getElementById('game-title');
+    if (heading) heading.textContent = 'Błąd ładowania';
   }
 }
 
