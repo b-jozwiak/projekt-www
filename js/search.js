@@ -5,10 +5,10 @@ async function searchGames() {
   const listEl = document.getElementById('search-results');
   if (!form || !listEl) return;
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  const performSearch = async () => {
     const query = document.getElementById('search-query').value;
     const genre = document.getElementById('filter-genre').value;
+    const platform = document.getElementById('filter-platform').value;
 
     showLoading('search-results');
 
@@ -16,6 +16,7 @@ async function searchGames() {
       const filters = {};
       if (query) filters.q = query;
       if (genre) filters.genre = genre;
+      if (platform) filters.platform = platform;
 
       const games = await getGamesWithFilters(filters);
 
@@ -35,7 +36,15 @@ async function searchGames() {
       console.error(err);
       showError('search-results', 'Błąd wyszukiwania.');
     }
+  };
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    performSearch();
   });
+
+  document.getElementById('filter-genre')?.addEventListener('change', performSearch);
+  document.getElementById('filter-platform')?.addEventListener('change', performSearch);
 }
 
 document.addEventListener('DOMContentLoaded', searchGames);
