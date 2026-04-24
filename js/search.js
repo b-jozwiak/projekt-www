@@ -24,7 +24,13 @@ async function searchGames() {
         return;
       }
 
-      listEl.innerHTML = '<div class="game-grid">' + games.map(game => createGameCard(game)).join('') + '</div>';
+      const grid = document.createElement('div');
+      grid.className = 'game-grid';
+      games.forEach(game => {
+        grid.appendChild(createGameCard(game));
+      });
+      listEl.innerHTML = '';
+      listEl.appendChild(grid);
     } catch (err) {
       console.error(err);
       showError('search-results', 'Błąd wyszukiwania.');

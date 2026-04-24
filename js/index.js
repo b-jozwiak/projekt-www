@@ -10,11 +10,17 @@ async function loadGames() {
     const games = await getGames();
 
     if (!games || games.length === 0) {
-      listEl.innerHTML = '<p class="empty-message">Brak gier.</p>';
+      showError('game-list', 'Brak gier.');
       return;
     }
 
-    listEl.innerHTML = '<div class="game-grid">' + games.map(game => createGameCard(game)).join('') + '</div>';
+    const grid = document.createElement('div');
+    grid.className = 'game-grid';
+    games.forEach(game => {
+      grid.appendChild(createGameCard(game));
+    });
+    listEl.innerHTML = '';
+    listEl.appendChild(grid);
   } catch (err) {
     console.error(err);
     showError('game-list', 'Błąd ładowania gier. Upewnij się, że json-server działa na porcie 3001.');

@@ -41,20 +41,44 @@ export function removeFavorite(id) {
 export function createGameCard(game) {
   const imageUrl = game.image || getPlaceholderImage(game.title);
   const isFav = isFavorite(game.id);
-  return `
-    <article class="game-card" data-id="${game.id}">
-      <a href="game-details.html?id=${game.id}">
-        <img src="${imageUrl}" alt="${game.title}" />
-        <h3>${game.title}</h3>
-        <p><strong>Gatunek:</strong> ${game.genre}</p>
-        <p><strong>Platforma:</strong> ${game.platform}</p>
-        <p><strong>Ocena:</strong> ${game.rating}</p>
-      </a>
-      <button class="fav-btn ${isFav ? 'is-favorite' : ''}" data-id="${game.id}">
-        ${isFav ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}
-      </button>
-    </article>
-  `;
+
+  const article = document.createElement('article');
+  article.className = 'game-card';
+  article.dataset.id = game.id;
+
+  const link = document.createElement('a');
+  link.href = `game-details.html?id=${game.id}`;
+
+  const img = document.createElement('img');
+  img.src = imageUrl;
+  img.alt = game.title || 'Gra';
+  link.appendChild(img);
+
+  const h3 = document.createElement('h3');
+  h3.textContent = game.title || 'Gra';
+  link.appendChild(h3);
+
+  const genreP = document.createElement('p');
+  genreP.innerHTML = '<strong>Gatunek:</strong> ' + (game.genre || '');
+  link.appendChild(genreP);
+
+  const platformP = document.createElement('p');
+  platformP.innerHTML = '<strong>Platforma:</strong> ' + (game.platform || '');
+  link.appendChild(platformP);
+
+  const ratingP = document.createElement('p');
+  ratingP.innerHTML = '<strong>Ocena:</strong> ' + (game.rating || '-');
+  link.appendChild(ratingP);
+
+  article.appendChild(link);
+
+  const favBtn = document.createElement('button');
+  favBtn.className = 'fav-btn' + (isFav ? ' is-favorite' : '');
+  favBtn.dataset.id = game.id;
+  favBtn.textContent = isFav ? 'Usuń z ulubionych' : 'Dodaj do ulubionych';
+  article.appendChild(favBtn);
+
+  return article;
 }
 
 export function showLoading(containerId) {

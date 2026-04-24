@@ -10,16 +10,14 @@ function loadFavoritesList() {
     return;
   }
 
-    listEl.innerHTML = '<div class="game-grid">' + favs.map(game => createGameCard(game)).join('') + '</div>';
-
-  document.querySelectorAll('.remove-fav').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      removeFavorite(parseInt(e.target.dataset.id));
-      loadFavoritesList();
-    });
+  const grid = document.createElement('div');
+  grid.className = 'game-grid';
+  favs.forEach(game => {
+    const card = createGameCard(game);
+    grid.appendChild(card);
   });
+  listEl.innerHTML = '';
+  listEl.appendChild(grid);
 }
 
 document.addEventListener('DOMContentLoaded', loadFavoritesList);
