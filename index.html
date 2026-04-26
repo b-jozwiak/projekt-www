@@ -9,23 +9,23 @@
 <body>
     <header>
         <h1>Lista Gier</h1>
-        <div id="sort-options">
-            <label for="sort-by">Sortuj według:</label>
-            <select id="sort-by">
-                <option value="rating-desc">Ocena (najwyższa)</option>
-                <option value="rating-asc">Ocena (najniższa)</option>
-                <option value="name-asc">Nazwa (A-Z)</option>
-                <option value="name-desc">Nazwa (Z-A)</option>
-                <option value="release-desc">Data wydania (najnowsze)</option>
-                <option value="release-asc">Data wydania (najstarsze)</option>
-            </select>
-        </div>
         <nav>
             <a href="index.html">Lista</a>
             <a href="search.html">Wyszukaj</a>
             <a href="favorites.html">Ulubione</a>
         </nav>
     </header>
+    <div id="sort-options">
+        <label for="sort-by">Sortuj według:</label>
+        <select id="sort-by">
+            <option value="rating-desc">Ocena (najwyższa)</option>
+            <option value="rating-asc">Ocena (najniższa)</option>
+            <option value="name-asc">Nazwa (A-Z)</option>
+            <option value="name-desc">Nazwa (Z-A)</option>
+            <option value="release-desc">Data wydania (najnowsze)</option>
+            <option value="release-asc">Data wydania (najstarsze)</option>
+        </select>
+    </div>
     <main>
         <section id="game-list">
             <p class="empty-message">Ładowanie gier...</p>
