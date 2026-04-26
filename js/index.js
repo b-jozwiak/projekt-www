@@ -1,6 +1,8 @@
 import { API, getGames, getPlaceholderImage, createGameCard, showLoading, showError } from './api.js';
 
 let allGames = [];
+let currentPage = 1;
+const GAMES_PER_PAGE = 10;
 
 function sortGames(games, sortType) {
   const sorted = [...games];
@@ -31,13 +33,31 @@ function renderGames(games) {
     return;
   }
 
+  const endIndex = currentPage * GAMES_PER_PAGE;
+  const gamesToShow = games.slice(0, endIndex);
+
   const grid = document.createElement('div');
   grid.className = 'game-grid';
-  games.forEach(game => {
+  gamesToShow.forEach(game => {
     grid.appendChild(createGameCard(game));
   });
   listEl.innerHTML = '';
   listEl.appendChild(grid);
+
+  const existingBtn = document.getElementById('load-more');
+  if (existingBtn) existingBtn.remove();
+
+  if (endIndex < games.length) {
+    const btn = document.createElement('button');
+    btn.id = 'load-more';
+    btn.className = 'load-more-btn';
+    btn.textContent = 'Pokaż więcej';
+    btn.addEventListener('click', () => {
+      currentPage++;
+      renderGames(games);
+    });
+    listEl.appendChild(btn);
+  }
 }
 
 async function loadGames() {
@@ -45,6 +65,7 @@ async function loadGames() {
   if (!listEl) return;
 
   showLoading('game-list');
+  currentPage = 1;
 
   try {
     allGames = await getGames();
@@ -68,6 +89,7 @@ function handleSortChange() {
   const sortSelect = document.getElementById('sort-by');
   if (!sortSelect || allGames.length === 0) return;
 
+  currentPage = 1;
   const sortedGames = sortGames(allGames, sortSelect.value);
   renderGames(sortedGames);
 }

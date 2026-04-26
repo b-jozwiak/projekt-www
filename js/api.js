@@ -1,4 +1,4 @@
-const API = 'http://localhost:3001';
+export const API = 'http://localhost:3001';
 const FAVORITES_KEY = 'favorite_games';
 
 export function getPlaceholderImage(name) {
@@ -39,7 +39,7 @@ export function removeFavorite(id) {
 }
 
 export function createGameCard(game) {
-  const imageUrl = game.image || getPlaceholderImage(game.title);
+  const imageUrl = getPlaceholderImage(game.name || game.title || 'Gra');
   const isFav = isFavorite(game.id);
 
   const article = document.createElement('article');
@@ -51,11 +51,11 @@ export function createGameCard(game) {
 
   const img = document.createElement('img');
   img.src = imageUrl;
-  img.alt = game.title || 'Gra';
+  img.alt = game.name || game.title || 'Gra';
   link.appendChild(img);
 
   const h3 = document.createElement('h3');
-  h3.textContent = game.title || 'Gra';
+  h3.textContent = game.name || game.title || 'Gra';
   link.appendChild(h3);
 
   const genreP = document.createElement('p');
