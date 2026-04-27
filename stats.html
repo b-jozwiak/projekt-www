@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statystyki Gier</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+    <header>
+        <h1>Statystyki Gier</h1>
+        <nav>
+            <a href="index.html">Lista</a>
+            <a href="search.html">Wyszukaj</a>
+            <a href="favorites.html">Ulubione</a>
+            <a href="stats.html">Statystyki</a>
+        </nav>
+    </header>
+    <main>
+        <section id="stats-overview">
+            <div class="stat-card">
+                <h3>Łączna liczba gier</h3>
+                <p id="total-games">-</p>
+            </div>
+            <div class="stat-card">
+                <h3>Średnia ocena</h3>
+                <p id="avg-rating">-</p>
+            </div>
+        </section>
+        <section id="genre-chart">
+            <h2>Gry według gatunku</h2>
+            <div id="chart-container"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Aplikacja Gier</p>
+    </footer>
+    <script src="js/stats.js" type="module"></script>
+</body>
+</html>
