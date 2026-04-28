@@ -358,3 +358,78 @@ button:hover {
 .load-more-btn:hover {
   background-color: var(--accent-hover);
 }
+
+.stat-card {
+  background-color: var(--surface);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.stat-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.stat-card p {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+#stats-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+#genre-chart {
+  background-color: var(--surface);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+#genre-chart h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+}
+
+.bar-chart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.bar-label {
+  min-width: 120px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.bar-wrapper {
+  flex: 1;
+  background-color: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  height: 24px;
+}
+
+.bar {
+  background-color: var(--accent);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 500;
+  min-width: 30px;
+}
