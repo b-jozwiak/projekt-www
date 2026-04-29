@@ -19,27 +19,33 @@
     <main>
         <section id="search-form">
             <form>
-                <label for="search-query">Wyszukaj po nazwie:</label>
-                <input type="text" id="search-query" name="query" placeholder="Wpisz nazwę..." minlength="2">
-                <label for="filter-genre">Filtruj po gatunku:</label>
-                <select id="filter-genre" name="genre">
-                    <option value="">Wszystkie</option>
-                    <option value="RPG">RPG</option>
-                    <option value="Akcja">Akcja</option>
-                    <option value="Przygoda">Przygoda</option>
-                    <option value="Sandbox">Sandbox</option>
-                    <option value="Logiczna">Logiczna</option>
-                    <option value="Symulacja">Symulacja</option>
-                </select>
-                <label for="filter-platform">Filtruj po platformie:</label>
-                <select id="filter-platform" name="platform">
-                    <option value="">Wszystkie</option>
-                    <option value="PC">PC</option>
-                    <option value="PlayStation">PlayStation</option>
-                    <option value="Xbox">Xbox</option>
-                    <option value="Nintendo Switch">Nintendo Switch</option>
-                    <option value="Mobile">Mobile</option>
-                </select>
+                <div class="filter-row">
+                    <label for="search-query">Wyszukaj po nazwie:</label>
+                    <input type="text" id="search-query" name="query" placeholder="Wpisz nazwę..." minlength="2">
+                </div>
+                <div class="filter-row">
+                    <label for="filter-genre">Filtruj po gatunku:</label>
+                    <select id="filter-genre" name="genre">
+                        <option value="">Wszystkie</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Akcja">Akcja</option>
+                        <option value="Przygoda">Przygoda</option>
+                        <option value="Sandbox">Sandbox</option>
+                        <option value="Logiczna">Logiczna</option>
+                        <option value="Symulacja">Symulacja</option>
+                    </select>
+                </div>
+                <div class="filter-row">
+                    <label for="filter-platform">Filtruj po platformie:</label>
+                    <select id="filter-platform" name="platform">
+                        <option value="">Wszystkie</option>
+                        <option value="PC">PC</option>
+                        <option value="PlayStation">PlayStation</option>
+                        <option value="Xbox">Xbox</option>
+                        <option value="Nintendo Switch">Nintendo Switch</option>
+                        <option value="Mobile">Mobile</option>
+                    </select>
+                </div>
                 <button type="submit">Szukaj</button>
             </form>
         </section>
