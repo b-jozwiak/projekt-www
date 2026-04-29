@@ -270,6 +270,17 @@ button:hover {
   align-items: center;
   gap: 0.75rem;
   margin-bottom: 1.5rem;
+  padding: 0.5rem 0;
+  background-color: var(--surface);
+  border-radius: 6px;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+#sort-options label {
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
 }
 
 #sort-options label {
@@ -432,4 +443,28 @@ button:hover {
   font-size: 0.85rem;
   font-weight: 500;
   min-width: 30px;
+}
+
+.stats-link {
+  display: block;
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.stats-link:hover {
+  background-color: var(--surface-hover);
+  border-color: var(--accent);
+  color: var(--accent-hover);
+}
+
+#stats-link-section {
+  margin-bottom: 1rem;
 }
