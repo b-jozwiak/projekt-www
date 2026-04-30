@@ -18,7 +18,16 @@ async function searchGames() {
       if (genre) filters.genre = genre;
       if (platform) filters.platform = platform;
 
-      const games = await getGamesWithFilters(filters);
+      let games = await getGamesWithFilters(filters);
+
+      if (platform) {
+        games = games.filter(game => {
+          if (Array.isArray(game.platforms)) {
+            return game.platforms.includes(platform);
+          }
+          return game.platform === platform;
+        });
+      }
 
       if (!games || games.length === 0) {
         showError('search-results', 'Brak wyników.');
