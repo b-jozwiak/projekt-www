@@ -483,11 +483,16 @@ main {
 
 .stat-card {
   background-color: var(--surface);
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   border: 1px solid var(--border);
   border-radius: 8px;
   text-align: center;
-  margin-bottom: 1rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.stat-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
 }
 
 .stat-card h3 {
@@ -506,16 +511,24 @@ main {
 
 #stats-overview {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  width: 100%;
 }
 
 #genre-chart {
   background-color: var(--surface);
-  padding: 1.5rem;
+  padding: 2rem;
   border: 1px solid var(--border);
   border-radius: 8px;
+  width: 100%;
+}
+
+#genre-chart h2 {
+  margin: 0 0 1.5rem;
+  font-size: 1.5rem;
+  color: var(--text);
 }
 
 #genre-chart h2 {
@@ -559,23 +572,26 @@ main {
 .stats-link {
   display: block;
   text-align: center;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
+  padding: 1.25rem 2rem;
+  margin-bottom: 2rem;
   background-color: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
   color: var(--text);
   text-decoration: none;
-  font-weight: 500;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 .stats-link:hover {
   background-color: var(--surface-hover);
   border-color: var(--accent);
   color: var(--accent-hover);
+  transform: translateY(-2px);
 }
 
 #stats-link-section {
-  margin-bottom: 1rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
 }
