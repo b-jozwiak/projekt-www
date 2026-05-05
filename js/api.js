@@ -43,40 +43,75 @@ export function createGameCard(game) {
   const isFav = isFavorite(game.id);
 
   const article = document.createElement('article');
-  article.className = 'game-card';
+  article.className = 'game-item';
   article.dataset.id = game.id;
 
   const link = document.createElement('a');
   link.href = `game-details.html?id=${game.id}`;
 
+  const imageWrapper = document.createElement('div');
+  imageWrapper.className = 'game-item__image-wrapper';
+
   const img = document.createElement('img');
   img.src = imageUrl;
   img.alt = game.name || game.title || 'Gra';
-  link.appendChild(img);
+  img.className = 'game-item__image';
+  imageWrapper.appendChild(img);
+
+  const ratingBadge = document.createElement('span');
+  ratingBadge.className = 'game-item__rating-badge';
+  ratingBadge.textContent = game.rating || '-';
+  imageWrapper.appendChild(ratingBadge);
+
+  const favBtnOverlay = document.createElement('button');
+  favBtnOverlay.className = 'game-item__fav-btn' + (isFav ? ' is-favorite' : '');
+  favBtnOverlay.dataset.id = game.id;
+  favBtnOverlay.textContent = isFav ? '♥' : '♡';
+  favBtnOverlay.title = isFav ? 'Usuń z ulubionych' : 'Dodaj do ulubionych';
+  favBtnOverlay.style.width = '2em';
+  favBtnOverlay.style.height = '2em';
+  favBtnOverlay.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    if (isFavorite(game.id)) {
+      removeFavorite(game.id);
+      favBtnOverlay.textContent = '♡';
+      favBtnOverlay.classList.remove('is-favorite');
+      favBtnOverlay.title = 'Dodaj do ulubionych';
+    } else {
+      addFavorite(game);
+      favBtnOverlay.textContent = '♥';
+      favBtnOverlay.classList.add('is-favorite');
+      favBtnOverlay.title = 'Usuń z ulubionych';
+    }
+  });
+  imageWrapper.appendChild(favBtnOverlay);
+
+  link.appendChild(imageWrapper);
+
+  const content = document.createElement('div');
+  content.className = 'game-item__content';
 
   const h3 = document.createElement('h3');
+  h3.className = 'game-item__title';
   h3.textContent = game.name || game.title || 'Gra';
-  link.appendChild(h3);
+  content.appendChild(h3);
+
+  if (game.platform) {
+    const platformP = document.createElement('p');
+    platformP.className = 'game-item__platform';
+    platformP.textContent = game.platform;
+    content.appendChild(platformP);
+  }
 
   const genreP = document.createElement('p');
-  genreP.innerHTML = '<strong>Gatunek:</strong> ' + (game.genre || '');
-  link.appendChild(genreP);
+  genreP.className = 'game-item__genre';
+  genreP.textContent = game.genre || '';
+  content.appendChild(genreP);
 
-  const platformP = document.createElement('p');
-  platformP.innerHTML = '<strong>Platforma:</strong> ' + (game.platform || '');
-  link.appendChild(platformP);
-
-  const ratingP = document.createElement('p');
-  ratingP.innerHTML = '<strong>Ocena:</strong> ' + (game.rating || '-');
-  link.appendChild(ratingP);
-
+  link.appendChild(content);
   article.appendChild(link);
-
-  const favBtn = document.createElement('button');
-  favBtn.className = 'fav-btn' + (isFav ? ' is-favorite' : '');
-  favBtn.dataset.id = game.id;
-  favBtn.textContent = isFav ? 'Usuń z ulubionych' : 'Dodaj do ulubionych';
-  article.appendChild(favBtn);
 
   return article;
 }
