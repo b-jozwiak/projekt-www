@@ -1,6 +1,8 @@
 export const API = 'http://localhost:3001';
 const FAVORITES_KEY = 'favorite_games';
 
+const FAV_FILL_COL = '#ef4444';
+
 export function getPlaceholderImage(name) {
   const colors = ['3b82f6', '8b5cf6', '10b981', 'f59e0b', 'ef4444', 'ec4899'];
   const color = colors[(name?.length || 0) % colors.length];
@@ -60,30 +62,43 @@ export function createGameCard(game) {
 
   const ratingBadge = document.createElement('span');
   ratingBadge.className = 'game-item__rating-badge';
-  ratingBadge.textContent = game.rating || '-';
+  ratingBadge.textContent = game.rating.toFixed(1) || '-';
   imageWrapper.appendChild(ratingBadge);
 
   const favBtnOverlay = document.createElement('button');
   favBtnOverlay.className = 'game-item__fav-btn' + (isFav ? ' is-favorite' : '');
   favBtnOverlay.dataset.id = game.id;
-  favBtnOverlay.textContent = isFav ? '♥' : '♡';
   favBtnOverlay.title = isFav ? 'Usuń z ulubionych' : 'Dodaj do ulubionych';
   favBtnOverlay.style.width = '2em';
   favBtnOverlay.style.height = '2em';
+
+  const heartSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  heartSvg.setAttribute('viewBox', '0 0 24 24');
+  heartSvg.setAttribute('width', '16');
+  heartSvg.setAttribute('height', '16');
+  heartSvg.setAttribute('stroke', 'white');
+  heartSvg.setAttribute('stroke-width', '2');
+  heartSvg.setAttribute('stroke-linejoin', 'round');
+  heartSvg.setAttribute('fill', isFav ? FAV_FILL_COL : 'none');
+
+  const heartPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  heartPath.setAttribute('d', 'M12 21C12 21 3 13.5 3 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 5.5-9 13-9 13z');
+  heartSvg.appendChild(heartPath);
+  favBtnOverlay.appendChild(heartSvg);
   favBtnOverlay.addEventListener("click", (ev) => {
     ev.preventDefault();
     ev.stopPropagation();
 
     if (isFavorite(game.id)) {
       removeFavorite(game.id);
-      favBtnOverlay.textContent = '♡';
       favBtnOverlay.classList.remove('is-favorite');
       favBtnOverlay.title = 'Dodaj do ulubionych';
+      heartSvg.setAttribute('fill', 'none');
     } else {
       addFavorite(game);
-      favBtnOverlay.textContent = '♥';
       favBtnOverlay.classList.add('is-favorite');
       favBtnOverlay.title = 'Usuń z ulubionych';
+      heartSvg.setAttribute('fill', FAV_FILL_COL);
     }
   });
   imageWrapper.appendChild(favBtnOverlay);
