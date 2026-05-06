@@ -681,9 +681,8 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 8px;
+  padding-right: 4px;
   color: white;
   font-size: 0.85rem;
   font-weight: 500;
-  min-width: 30px;
 }
