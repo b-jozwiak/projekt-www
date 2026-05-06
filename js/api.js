@@ -12,7 +12,17 @@ export function getPlaceholderImage(name) {
 
 export function getFavorites() {
   const data = localStorage.getItem(FAVORITES_KEY);
-  return data ? JSON.parse(data) : [];
+  if (!data) return [];
+  let parsed;
+  try { parsed = JSON.parse(data); } catch { return []; }
+  if (parsed.length > 0 && typeof parsed[0] === 'object') {
+    const ids = parsed.map(g => Number(g.id)).filter(n => !isNaN(n) && n > 0);
+    saveFavorites(ids);
+    return ids;
+  }
+  const valid = parsed.filter(n => typeof n === 'number' && !isNaN(n) && n > 0);
+  if (valid.length !== parsed.length) saveFavorites(valid);
+  return valid;
 }
 
 export function saveFavorites(favs) {
@@ -21,23 +31,27 @@ export function saveFavorites(favs) {
 
 export function isFavorite(id) {
   const favs = getFavorites();
-  return favs.some(g => g.id === id);
+  return favs.includes(id);
 }
 
-export function addFavorite(game) {
+export function addFavorite(id) {
   const favs = getFavorites();
-  if (!isFavorite(game.id)) {
-    favs.push(game);
+  if (!isFavorite(id)) {
+    favs.push(id);
     saveFavorites(favs);
+    document.dispatchEvent(new CustomEvent('favorites-changed'));
     return true;
   }
   return false;
 }
 
-export function removeFavorite(id) {
+export function removeFavorite(id, silent = false) {
   let favs = getFavorites();
-  favs = favs.filter(g => g.id !== id);
+  favs = favs.filter(favId => favId !== id);
   saveFavorites(favs);
+  if (!silent) {
+    document.dispatchEvent(new CustomEvent('favorites-changed'));
+  }
 }
 
 export function createGameCard(game) {
@@ -94,11 +108,13 @@ export function createGameCard(game) {
       favBtnOverlay.classList.remove('is-favorite');
       favBtnOverlay.title = 'Dodaj do ulubionych';
       heartSvg.setAttribute('fill', 'none');
+      showToast('Usunięto z ulubionych');
     } else {
-      addFavorite(game);
+      addFavorite(game.id);
       favBtnOverlay.classList.add('is-favorite');
       favBtnOverlay.title = 'Usuń z ulubionych';
       heartSvg.setAttribute('fill', FAV_FILL_COL);
+      showToast('Dodano do ulubionych');
     }
   });
   imageWrapper.appendChild(favBtnOverlay);
@@ -145,6 +161,26 @@ export function showError(containerId, message = 'Wystąpił błąd.') {
   }
 }
 
+let toastTimer = null;
+
+export function showToast(message) {
+  const existing = document.querySelector('.toast-notification');
+  if (existing) {
+    existing.remove();
+    if (toastTimer) clearTimeout(toastTimer);
+  }
+  const el = document.createElement('div');
+  el.className = 'toast-notification';
+  el.textContent = message;
+  document.body.appendChild(el);
+  requestAnimationFrame(() => el.classList.add('toast-visible'));
+  toastTimer = setTimeout(() => {
+    el.classList.remove('toast-visible');
+    setTimeout(() => el.remove(), 300);
+    toastTimer = null;
+  }, 2500);
+}
+
 export async function getGames() {
   const res = await fetch(`${API}/games`);
   if (!res.ok) throw new Error('Błąd pobierania gier');
@@ -152,6 +188,7 @@ export async function getGames() {
 }
 
 export async function getGameById(id) {
+  if (id == null || isNaN(id)) throw new Error('Nieprawid�owe ID gry');
   const res = await fetch(`${API}/games/${id}`);
   if (!res.ok) throw new Error('Gra nie znaleziona');
   return res.json();
