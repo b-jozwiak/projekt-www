@@ -1,4 +1,4 @@
-import { API, getGameById, getFavorites, saveFavorites, isFavorite, addFavorite, removeFavorite, getPlaceholderImage, showLoading, showError } from './api.js';
+import { API, getGameById, getFavorites, saveFavorites, isFavorite, addFavorite, removeFavorite, getPlaceholderImage, showLoading, showError, showToast } from './api.js';
 
 function setupBackLink() {
   const backLink = document.getElementById('back-link');
@@ -75,8 +75,10 @@ async function loadGameDetails() {
   function toggleFavorite(btn, game) {
     if (isFavorite(game.id)) {
       removeFavorite(game.id);
+      showToast('Usunięto z ulubionych');
     } else {
-      addFavorite(game);
+      addFavorite(game.id);
+      showToast('Dodano do ulubionych');
     }
     updateFavoriteButton(btn, game);
   }
