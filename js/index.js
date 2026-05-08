@@ -2,7 +2,7 @@ import { API, getGames, getPlaceholderImage, createGameCard, showLoading, showEr
 
 let allGames = [];
 let currentPage = 1;
-const GAMES_PER_PAGE = 10;
+const GAMES_PER_PAGE = 12;
 
 function sortGames(games, sortType) {
   const sorted = [...games];
@@ -36,13 +36,27 @@ function renderGames(games) {
   const endIndex = currentPage * GAMES_PER_PAGE;
   const gamesToShow = games.slice(0, endIndex);
 
-  const grid = document.createElement('div');
-  grid.className = 'game-grid';
-  gamesToShow.forEach(game => {
-    grid.appendChild(createGameCard(game));
-  });
-  listEl.innerHTML = '';
-  listEl.appendChild(grid);
+  let grid = listEl.querySelector('.game-grid');
+
+  if (currentPage === 1 || !grid) {
+    if (grid) grid.remove();
+    grid = document.createElement('div');
+    grid.className = 'game-grid';
+    listEl.innerHTML = '';
+    listEl.appendChild(grid);
+    gamesToShow.forEach(game => {
+      grid.appendChild(createGameCard(game));
+    });
+  } else {
+    const existingIds = new Set(
+      [...grid.querySelectorAll('.game-item')].map(el => Number(el.dataset.id))
+    );
+    gamesToShow.forEach(game => {
+      if (!existingIds.has(game.id)) {
+        grid.appendChild(createGameCard(game));
+      }
+    });
+  }
 
   const existingBtn = document.getElementById('load-more');
   if (existingBtn) existingBtn.remove();

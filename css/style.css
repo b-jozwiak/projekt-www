@@ -205,7 +205,21 @@ footer {
   min-width: 0;
   overflow-wrap: break-word;
   position: relative;
+  animation: fadeInUp 0.35s ease both;
 }
+
+.game-item:nth-child(1) { animation-delay: 0.00s; }
+.game-item:nth-child(2) { animation-delay: 0.05s; }
+.game-item:nth-child(3) { animation-delay: 0.10s; }
+.game-item:nth-child(4) { animation-delay: 0.15s; }
+.game-item:nth-child(5) { animation-delay: 0.20s; }
+.game-item:nth-child(6) { animation-delay: 0.25s; }
+.game-item:nth-child(7) { animation-delay: 0.30s; }
+.game-item:nth-child(8) { animation-delay: 0.35s; }
+.game-item:nth-child(9) { animation-delay: 0.40s; }
+.game-item:nth-child(10) { animation-delay: 0.45s; }
+.game-item:nth-child(11) { animation-delay: 0.50s; }
+.game-item:nth-child(12) { animation-delay: 0.55s; }
 
 .game-item:hover {
   background-color: var(--surface-hover);
@@ -685,4 +699,38 @@ button:hover {
   color: white;
   font-size: 0.85rem;
   font-weight: 500;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.toast-notification {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--surface);
+  color: var(--text);
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.toast-notification.toast-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.game-item--removing {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
