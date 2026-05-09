@@ -128,7 +128,6 @@ footer {
   .game-item__image {
     height: auto;
     max-height: 90px;
-    margin-bottom: 0.5rem;
   }
 
   .game-item__title {
@@ -237,12 +236,12 @@ footer {
 }
 
 .game-item__image {
+  display: block;
   width: 100%;
   height: auto;
   aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 4px;
-  margin-bottom: 0.75rem;
   background-color: var(--border);
 }
 
@@ -251,6 +250,7 @@ footer {
   display: flex;
   flex-direction: column;
   padding: 0;
+  margin-top: 0.75rem;
 }
 
 .game-item__title {
@@ -261,10 +261,46 @@ footer {
   color: var(--text);
 }
 
-.game-item__platform {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  margin: 0.25rem 0;
+.game-item__platforms {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 1rem 0.4rem 0.35rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
+  border-radius: 0 0 4px 4px;
+}
+
+.game-item__platform-badge {
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 0.15rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.game-item__platform-badge--hidden {
+  display: none;
+}
+
+.game-item__platform-badge--extra {
+  border: 1px dashed rgba(255,255,255,0.5);
+  background: transparent;
+  backdrop-filter: none;
+  cursor: default;
+}
+
+.game-item__platforms:hover .game-item__platform-badge--extra {
+  border-style: solid;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
 }
 
 .game-item__genre {
@@ -310,12 +346,6 @@ footer {
 .game-item__fav-btn.is-favorite {
   color: #ef4444;
   opacity: 1;
-}
-
-.game-item__platform-badge {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  margin-top: 0.25rem;
 }
 
 .empty-message {

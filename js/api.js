@@ -129,11 +129,43 @@ export function createGameCard(game) {
   h3.textContent = game.name || game.title || 'Gra';
   content.appendChild(h3);
 
-  if (game.platform) {
-    const platformP = document.createElement('p');
-    platformP.className = 'game-item__platform';
-    platformP.textContent = game.platform;
-    content.appendChild(platformP);
+  if (game.platforms && game.platforms.length > 0) {
+    const platformDiv = document.createElement('div');
+    platformDiv.className = 'game-item__platforms';
+
+    const MAX_SHOWN = 2;
+    const list = game.platforms;
+    const hiddenBadges = [];
+
+    list.forEach((p, i) => {
+      const badge = document.createElement('span');
+      badge.className = 'game-item__platform-badge';
+      if (i >= MAX_SHOWN) {
+        badge.classList.add('game-item__platform-badge--hidden');
+        hiddenBadges.push(badge);
+      }
+      badge.textContent = p;
+      platformDiv.appendChild(badge);
+    });
+
+    if (list.length > MAX_SHOWN) {
+      const extra = document.createElement('span');
+      extra.className = 'game-item__platform-badge game-item__platform-badge--extra';
+      extra.textContent = `+${list.length - MAX_SHOWN}`;
+      platformDiv.appendChild(extra);
+
+      platformDiv.addEventListener('mouseenter', () => {
+        hiddenBadges.forEach(b => b.classList.remove('game-item__platform-badge--hidden'));
+        extra.classList.add('game-item__platform-badge--hidden');
+      });
+
+      platformDiv.addEventListener('mouseleave', () => {
+        hiddenBadges.forEach(b => b.classList.add('game-item__platform-badge--hidden'));
+        extra.classList.remove('game-item__platform-badge--hidden');
+      });
+    }
+
+    imageWrapper.appendChild(platformDiv);
   }
 
   const genreP = document.createElement('p');
