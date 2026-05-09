@@ -272,6 +272,7 @@ footer {
   padding: 1rem 0.4rem 0.35rem;
   background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
   border-radius: 0 0 4px 4px;
+  touch-action: manipulation;
 }
 
 .game-item__platform-badge {
@@ -297,10 +298,14 @@ footer {
   cursor: default;
 }
 
-.game-item__platforms:hover .game-item__platform-badge--extra {
-  border-style: solid;
-  background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(4px);
+.game-item__platforms:hover .game-item__platform-badge--hidden,
+.game-item__platforms--expanded .game-item__platform-badge--hidden {
+  display: inline;
+}
+
+.game-item__platforms:hover .game-item__platform-badge--extra,
+.game-item__platforms--expanded .game-item__platform-badge--extra {
+  display: none;
 }
 
 .game-item__genre {

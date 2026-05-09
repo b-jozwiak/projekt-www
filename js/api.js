@@ -2,6 +2,7 @@ export const API = 'http://localhost:3001';
 const FAVORITES_KEY = 'favorite_games';
 
 const FAV_FILL_COL = '#ef4444';
+let _platformsDocInit = false;
 
 export function getPlaceholderImage(name) {
   const colors = ['3b82f6', '8b5cf6', '10b981', 'f59e0b', 'ef4444', 'ec4899'];
@@ -154,14 +155,25 @@ export function createGameCard(game) {
       extra.textContent = `+${list.length - MAX_SHOWN}`;
       platformDiv.appendChild(extra);
 
-      platformDiv.addEventListener('mouseenter', () => {
-        hiddenBadges.forEach(b => b.classList.remove('game-item__platform-badge--hidden'));
-        extra.classList.add('game-item__platform-badge--hidden');
-      });
+      platformDiv.addEventListener('click', (e) => {
+        const wasExpanded = platformDiv.classList.contains('game-item__platforms--expanded');
 
-      platformDiv.addEventListener('mouseleave', () => {
-        hiddenBadges.forEach(b => b.classList.add('game-item__platform-badge--hidden'));
-        extra.classList.remove('game-item__platform-badge--hidden');
+        if (!wasExpanded) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        platformDiv.classList.toggle('game-item__platforms--expanded');
+      });
+    }
+
+    if (!_platformsDocInit) {
+      _platformsDocInit = true;
+      document.addEventListener('click', (e) => {
+        document.querySelectorAll('.game-item__platforms--expanded').forEach(el => {
+          if (!el.contains(e.target)) {
+            el.classList.remove('game-item__platforms--expanded');
+          }
+        });
       });
     }
 
