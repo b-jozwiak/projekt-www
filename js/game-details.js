@@ -48,7 +48,11 @@ async function loadGameDetails() {
         <img id="game-image" src="${getPlaceholderImage(game.name)}" alt="${game.name}" style="display:block; max-width:100%; height:auto;">
         <h2 id="game-title">${game.name || 'Nieznana gra'}</h2>
         <p id="game-genre"><strong>Gatunek:</strong> ${game.genre || '-'}</p>
-        <p id="game-platform"><strong>Platforma:</strong> ${game.platform || '-'}</p>
+        <p id="game-platforms"><strong>Platformy:</strong>
+  ${game.platforms && game.platforms.length > 0
+    ? game.platforms.map(p => `<span class="game-detail__platform-badge">${p}</span>`).join(' ')
+    : '-'}
+</p>
         <p id="game-release"><strong>Data wydania:</strong> ${game.release || '-'}</p>
         <p id="game-rating"><strong>Ocena:</strong> ${game.rating || '-'}</p>
         <p id="game-description">${game.description || 'Brak opisu.'}</p>
