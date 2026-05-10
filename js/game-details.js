@@ -1,9 +1,11 @@
-import { API, getGameById, getFavorites, saveFavorites, isFavorite, addFavorite, removeFavorite, getPlaceholderImage, showLoading, showError, showToast } from './api.js';
+import { getGameById, isFavorite, addFavorite, removeFavorite, getPlaceholderImage, showToast } from './api.js';
+
+let currentGame = null;
 
 function setupBackLink() {
   const backLink = document.getElementById('back-link');
   if (!backLink) return;
-  
+
   const ref = document.referrer;
   if (ref && ref.includes('favorites.html')) {
     backLink.href = 'favorites.html';
@@ -11,83 +13,126 @@ function setupBackLink() {
     const savedQuery = sessionStorage.getItem('search-query');
     const savedGenre = sessionStorage.getItem('filter-genre');
     const savedPlatform = sessionStorage.getItem('filter-platform');
-    
+
     let href = 'search.html';
     const params = [];
     if (savedQuery) params.push(`q=${encodeURIComponent(savedQuery)}`);
     if (savedGenre) params.push(`genre=${encodeURIComponent(savedGenre)}`);
     if (savedPlatform) params.push(`platform=${encodeURIComponent(savedPlatform)}`);
     if (params.length > 0) href += '?' + params.join('&');
-    
+
     backLink.href = href;
   } else {
     backLink.href = 'index.html';
   }
 }
 
-async function loadGameDetails() {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get('id');
-  const container = document.getElementById('game-details');
+function setMessage(type, text) {
+  const msg = document.getElementById('game-details-message');
+  const content = document.getElementById('game-details-content');
+  if (!msg) return;
+  msg.textContent = text;
+  msg.className = type;
+  msg.style.display = '';
+  if (content) content.style.display = 'none';
+}
 
-  if (!container) return;
+function showGameDetails(game) {
+  const msg = document.getElementById('game-details-message');
+  const content = document.getElementById('game-details-content');
+  if (!content) return;
 
-  if (!id) {
-    container.innerHTML = '<p class="empty-message">Nie wybrano gry. <a href="index.html">Wróć do listy</a></p>';
-    return;
+  if (msg) msg.style.display = 'none';
+  content.style.display = '';
+
+  const titleEl = document.getElementById('game-title');
+  if (titleEl) titleEl.textContent = game.name || 'Nieznana gra';
+
+  const imgEl = document.getElementById('game-image');
+  if (imgEl) {
+    imgEl.src = getPlaceholderImage(game.name);
+    imgEl.alt = game.name || 'Gra';
   }
 
-  container.innerHTML = '<p class="loading">Ładowanie...</p>';
+  const genreEl = document.getElementById('game-genre');
+  if (genreEl) genreEl.textContent = game.genre || '-';
 
-  try {
-    const game = await getGameById(id);
-    const isFav = isFavorite(game.id);
-
-    container.innerHTML = `
-      <div class="game-details">
-        <img id="game-image" src="${getPlaceholderImage(game.name)}" alt="${game.name}" style="display:block; max-width:100%; height:auto;">
-        <h2 id="game-title">${game.name || 'Nieznana gra'}</h2>
-        <p id="game-genre"><strong>Gatunek:</strong> ${game.genre || '-'}</p>
-        <p id="game-platforms"><strong>Platformy:</strong>
-  ${game.platforms && game.platforms.length > 0
-    ? game.platforms.map(p => `<span class="game-detail__platform-badge">${p}</span>`).join(' ')
-    : '-'}
-</p>
-        <p id="game-release"><strong>Data wydania:</strong> ${game.release || '-'}</p>
-        <p id="game-rating"><strong>Ocena:</strong> ${game.rating || '-'}</p>
-        <p id="game-description">${game.description || 'Brak opisu.'}</p>
-        <button id="add-to-favorites">${isFav ? 'Usuń z ulubionych' : 'Dodaj do ulubionych'}</button>
-      </div>
-    `;
-
-    const btn = document.getElementById('add-to-favorites');
-    if (btn) {
-      btn.addEventListener('click', () => toggleFavorite(btn, game));
+  const platformsEl = document.getElementById('game-platforms');
+  if (platformsEl) {
+    platformsEl.textContent = '';
+    if (game.platforms && game.platforms.length > 0) {
+      game.platforms.forEach(p => {
+        const badge = document.createElement('span');
+        badge.className = 'game-detail__platform-badge';
+        badge.textContent = p;
+        platformsEl.appendChild(badge);
+      });
+    } else {
+      platformsEl.textContent = '-';
     }
-  } catch (err) {
-    console.error(err);
-    container.innerHTML = '<p class="error">Błąd ładowania</p>';
+  }
+
+  const releaseEl = document.getElementById('game-release');
+  if (releaseEl) releaseEl.textContent = game.release || '-';
+
+  const ratingEl = document.getElementById('game-rating');
+  if (ratingEl) ratingEl.textContent = game.rating != null ? String(game.rating) : '-';
+
+  const descEl = document.getElementById('game-description');
+  if (descEl) descEl.textContent = game.description || 'Brak opisu.';
+
+  const btn = document.getElementById('add-to-favorites');
+  if (btn) {
+    btn.textContent = isFavorite(game.id) ? 'Usuń z ulubionych' : 'Dodaj do ulubionych';
   }
 }
 
-  function updateFavoriteButton(btn, game) {
-    const isFav = isFavorite(game.id);
-    btn.textContent = isFav ? 'Usuń z ulubionych' : 'Dodaj do ulubionych';
-    btn.dataset.favorite = isFav;
+async function loadGameDetails() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+
+  if (!id) {
+    setMessage('empty-message', 'Nie wybrano gry.');
+    return;
   }
 
-  function toggleFavorite(btn, game) {
-    if (isFavorite(game.id)) {
-      removeFavorite(game.id);
-      showToast('Usunięto z ulubionych');
-    } else {
-      addFavorite(game.id);
-      showToast('Dodano do ulubionych');
-    }
-    updateFavoriteButton(btn, game);
+  setMessage('loading', 'Ładowanie...');
+
+  try {
+    const game = await getGameById(id);
+    currentGame = game;
+    showGameDetails(game);
+  } catch (err) {
+    console.error(err);
+    setMessage('error', 'Błąd ładowania');
   }
+}
+
+function updateFavoriteButton(btn) {
+  if (!currentGame) return;
+  const isFav = isFavorite(currentGame.id);
+  btn.textContent = isFav ? 'Usuń z ulubionych' : 'Dodaj do ulubionych';
+  btn.dataset.favorite = String(isFav);
+}
+
+function toggleFavorite(btn) {
+  if (!currentGame) return;
+  if (isFavorite(currentGame.id)) {
+    removeFavorite(currentGame.id);
+    showToast('Usunięto z ulubionych');
+  } else {
+    addFavorite(currentGame.id);
+    showToast('Dodano do ulubionych');
+  }
+  updateFavoriteButton(btn);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   setupBackLink();
   loadGameDetails();
+
+  const btn = document.getElementById('add-to-favorites');
+  if (btn) {
+    btn.addEventListener('click', () => toggleFavorite(btn));
+  }
 });
