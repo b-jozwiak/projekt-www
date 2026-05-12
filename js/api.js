@@ -56,7 +56,7 @@ export function removeFavorite(id, silent = false) {
 }
 
 export function createGameCard(game) {
-  const imageUrl = getPlaceholderImage(game.name || game.title || 'Gra');
+  const imageUrl = game.image || getPlaceholderImage(game.name || game.title || 'Gra');
   const isFav = isFavorite(game.id);
 
   const article = document.createElement('article');

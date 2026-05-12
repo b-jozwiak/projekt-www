@@ -50,7 +50,7 @@ function showGameDetails(game) {
 
   const imgEl = document.getElementById('game-image');
   if (imgEl) {
-    imgEl.src = getPlaceholderImage(game.name);
+    imgEl.src = game.image || getPlaceholderImage(game.name);
     imgEl.alt = game.name || 'Gra';
   }
 

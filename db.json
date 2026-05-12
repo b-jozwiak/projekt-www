@@ -8,7 +8,7 @@
       "release": "2015-05-19",
       "rating": 9.8,
       "description": "Epicka RPG o wiedźminie Geralcie z Rivii, przemierzającym świat fantasy w poszukiwaniu zaginionej córki.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/2/27/The_Witcher_3_Wild_Hunt.jpg"
+      "image": "images/game-1.jpg"
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "release": "2020-12-10",
       "rating": 8.2,
       "description": "Futurystyczne RPG akcji w Night City. Gracz tworzy postać i przebija się przez niebezpieczny świat.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/9/9f/Cyberpunk_2077_box_art.jpg"
+      "image": "images/game-2.jpg"
     },
     {
       "id": 3,
@@ -28,7 +28,7 @@
       "release": "2011-11-18",
       "rating": 9.0,
       "description": "Gra voxel w stylu sandbox. Gracze eksplorują losowo generowany świat, zbierają zasoby i budują.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png"
+      "image": "images/game-3.png"
     },
     {
       "id": 4,
@@ -38,7 +38,7 @@
       "release": "2014-04-14",
       "rating": 9.0,
       "description": "Otwarty świat akcji w Los Santos. Trzech protagonistów przeprowadza napady.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png"
+      "image": "images/game-4.jpg"
     },
     {
       "id": 5,
@@ -48,7 +48,7 @@
       "release": "2017-03-03",
       "rating": 9.7,
       "description": "Otwarta gra przygodowa. Link eksploruje Hyrule, walcząc z Calamity Ganonem.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg"
+      "image": "images/game-5.jpg"
     },
     {
       "id": 6,
@@ -58,7 +58,7 @@
       "release": "2011-04-19",
       "rating": 9.5,
       "description": "Gra logiczna z portalem. Rozwiązuj łamigłówki używając portali.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/f/f2/Portal_2_steam_cover.jpg"
+      "image": "images/game-6.jpg"
     },
     {
       "id": 7,
@@ -68,7 +68,7 @@
       "release": "2016-04-12",
       "rating": 9.0,
       "description": "Wymagające action RPG. Walki z intensywnymi bossami w mrocznym świecie.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/b/b7/Dark_Souls_III_Cover.jpg"
+      "image": "images/game-7.jpg"
     },
     {
       "id": 8,
@@ -78,7 +78,7 @@
       "release": "2018-06-15",
       "rating": 7.8,
       "description": "Gra multiplayer. Wykryj oszusta wśród załogi statku kosmicznego.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/9/9a/Among_Us_cover_art.jpg"
+      "image": "images/game-8.jpg"
     },
     {
       "id": 9,
@@ -88,7 +88,7 @@
       "release": "2016-02-26",
       "rating": 9.2,
       "description": "Symulacja zarządzania farmą. Hoduj, handluj i buduj relacje.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/f/f5/Stardew_Valley_cover_art.jpg"
+      "image": "images/game-9.jpg"
     },
     {
       "id": 10,
@@ -98,7 +98,7 @@
       "release": "2019-03-22",
       "rating": 9.2,
       "description": "Gra akcji. Wcielasz się w shinobi, przemierzając feudalne Japonię.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/4/4c/Sekiro_Shadows_Die_Twice.jpg"
+      "image": "images/game-10.jpg"
     },
     {
       "id": 11,
@@ -108,7 +108,7 @@
       "release": "2018-01-25",
       "rating": 9.4,
       "description": "Platformówka o pokonywaniu wewnętrznych demonów. Madeline wspina się na górę.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/b/b5/Celeste_cover.jpg"
+      "image": "images/game-11.jpg"
     },
     {
       "id": 12,
@@ -118,7 +118,87 @@
       "release": "2020-09-17",
       "rating": 9.3,
       "description": "Action roguelike. Zagreus ucieka z zaświatów, walcząc z hordami.",
-      "image": "https://upload.wikimedia.org/wikipedia/en/6/6e/Hades_cover.jpg"
+      "image": "images/game-12.jpg"
+    },
+    {
+      "id": 13,
+      "name": "Red Dead Redemption 2",
+      "genre": "Akcja",
+      "platforms": ["PC", "PlayStation", "Xbox"],
+      "release": "2019-11-05",
+      "rating": 9.7,
+      "description": "Epicki western w otwartym świecie. Arthur Morgan walczy o przetrwanie w czasach upadku Dzikiego Zachodu.",
+      "image": "images/game-13.jpg"
+    },
+    {
+      "id": 14,
+      "name": "Elden Ring",
+      "genre": "RPG",
+      "platforms": ["PC", "PlayStation", "Xbox"],
+      "release": "2022-02-25",
+      "rating": 9.8,
+      "description": "Rozległe RPG akcji osadzone w świecie fantasy stworzonym przez Hidetakę Miyazakiego i George'a R.R. Martina.",
+      "image": "images/game-14.jpg"
+    },
+    {
+      "id": 15,
+      "name": "God of War",
+      "genre": "Akcja",
+      "platforms": ["PC", "PlayStation"],
+      "release": "2018-04-20",
+      "rating": 9.6,
+      "description": "Kratos i jego syn Atreus wyruszają w podróż po krainach mitologii nordyckiej.",
+      "image": "images/game-15.jpg"
+    },
+    {
+      "id": 16,
+      "name": "Hollow Knight",
+      "genre": "Platformowa",
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+      "release": "2017-02-24",
+      "rating": 9.3,
+      "description": "Metroidvania w mrocznym, podziemnym królestwie. Walcz z robalami i odkrywaj sekrety.",
+      "image": "images/game-16.jpg"
+    },
+    {
+      "id": 17,
+      "name": "DOOM Eternal",
+      "genre": "Akcja",
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+      "release": "2020-03-20",
+      "rating": 9.1,
+      "description": "Szybka strzelanka pierwszoosobowa. Jako Doom Slayer walczysz z hordami demonów z piekła.",
+      "image": "images/game-17.jpg"
+    },
+    {
+      "id": 18,
+      "name": "It Takes Two",
+      "genre": "Przygoda",
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+      "release": "2021-03-26",
+      "rating": 9.5,
+      "description": "Kooperacyjna gra przygodowa. Para przechodzi przez szereg zwariowanych przygód, by uratować swój związek.",
+      "image": "images/game-18.jpg"
+    },
+    {
+      "id": 19,
+      "name": "Horizon Zero Dawn",
+      "genre": "RPG",
+      "platforms": ["PC", "PlayStation"],
+      "release": "2017-02-28",
+      "rating": 9.1,
+      "description": "Otwarty świat postapokaliptyczny. Aloy poluje na mechaniczne stworzenia i odkrywa tajemnice przeszłości.",
+      "image": "images/game-19.jpg"
+    },
+    {
+      "id": 20,
+      "name": "Slay the Spire",
+      "genre": "Roguelike",
+      "platforms": ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+      "release": "2019-01-23",
+      "rating": 9.0,
+      "description": "Karciany roguelike. Wspinaj się po wieży, buduj talię i walcz z potworami.",
+      "image": "images/game-20.jpg"
     }
   ]
 }

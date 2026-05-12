@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Katalog gier komputerowych",
   "scripts": {
-    "server": "json-server --watch db.json --port 3001"
+    "server": "json-server --watch db.json --port 3001 --static ./"
   },
   "devDependencies": {
     "json-server": "^0.17.4"
