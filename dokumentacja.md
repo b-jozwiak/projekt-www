@@ -6,6 +6,24 @@ Aplikacja webowa do przegladania katalogu gier. Dane pobierane sa z lokalnego RE
 
 ---
 
+## Funkcjonalności:
+- 5 widoków
+- kilka różnych zapytań do API
+- dynamiczne renderowanie danych
+- obsługa błędów
+- walidacja formularza
+- responsywny layout
+
+- sortowanie danych
+- filtrowanie
+- zapis danych w localStorage (edytowanie danych)
+- przetwarzanie danych (strona statystyki)
+- animacje CSS
+- złożone elementy
+- czytalne komunikaty
+
+---
+
 ## Struktura plikow i katalogow
 
 ```
