@@ -1,5 +1,5 @@
 # Wprowadzenie do aplikacji WWW
-
+## Dokumentacja znajduje się w pliku [dokumentacja.md](dokumentacja.md)
 ## Skład zespołu:
 - Bartosz Jóźwiak (119694)
 - Mikołaj Dumała (119665)
